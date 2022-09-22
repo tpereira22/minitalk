@@ -14,18 +14,65 @@
 #include <signal.h>
 #include "libft/libft.h"
 
-/*void    handle_str(int sign)
+int power(int nb, int pow)
 {
+    int result;
+    int i;
+
+    i = 0;
+    result = 0;
+    while (i < pow)
+    {
+        result *= nb;
+        i++;
+    }
+    return (result);
+}
+
+int convert_dec(char *str)
+{
+    int i;
+    int dec;
+    int res;
+    int bit;
+
+    bit = ft_atoi(str);
+    dec = 0;
+    res = 0;
+    i = 0;
+    while (bit != 0)
+    {
+        res = bit % 10;
+        bit /= 2;
+        dec += res * power(2, i);
+        i++;
+    }
+    return (dec);
+}
+
+void    handle_str(int sign)
+{
+    char    str[9];
+    int i;
+    int final_str;
+
+    i = 0;
     if (sign == 10)
+        str[i++] = '0';
     else if (sign == 12)
-}*/
+        str[i++] = '1';
+    final_str = 0;
+    str[i] = 48;
+    final_str = convert_dec(str);
+    ft_putchar_fd(final_str, 1);
+}
 
 int main(void)
 {
     ft_putstr_fd("Server PID -> ", 1);
     ft_putnbr_fd(getpid(), 1);
     ft_putstr_fd("\n", 1);
-    /*signal(SIGUSR1, handle_str);
+    signal(SIGUSR1, handle_str);
     signal(SIGUSR2, handle_str);
-    */return (0);
+    return (0);
 }

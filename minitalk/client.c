@@ -14,7 +14,7 @@
 #include <signal.h>
 #include "libft/libft.h"
 
-int send_signal(int pid, int *binary)
+void    send_signal(int pid, int *binary)
 {
     int i;
 
@@ -28,10 +28,9 @@ int send_signal(int pid, int *binary)
         i++;
     }
     free(binary);
-    return (0);
 }
 
-int *convert(int c)
+int *convert_bit(int c)
 {
     int *binary;
     int i;
@@ -73,7 +72,7 @@ int main(int argc, char **argv)
     i = 0;
     while (argv[2][i] != '\0')
     {
-        send_signal(pid, convert(argv[2][i]));
+        send_signal(pid, convert_bit(argv[2][i]));
         i++;
     }
     return (0);

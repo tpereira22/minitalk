@@ -14,11 +14,18 @@
 #include <signal.h>
 #include "libft/libft.h"
 
+/*void    handle_str(int sign)
+{
+    if (sign == 10)
+    else if (sign == 12)
+}*/
+
 int main(void)
 {
     ft_putstr_fd("Server PID -> ", 1);
     ft_putnbr_fd(getpid(), 1);
     ft_putstr_fd("\n", 1);
-
-    return (0);
+    /*signal(SIGUSR1, handle_str);
+    signal(SIGUSR2, handle_str);
+    */return (0);
 }

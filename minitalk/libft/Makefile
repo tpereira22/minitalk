@@ -25,7 +25,7 @@ OBJS			= $(SRCS:.c=.o)
 
 OBJSB			= $(SRCSB:.c=.o)
 
-CC				= gcc
+CC				= clang
 
 RM				= rm -f
 

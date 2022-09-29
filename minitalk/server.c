@@ -14,17 +14,15 @@
 #include <signal.h>
 #include "libft/libft.h"
 
-int power(int nb, int pow)
+int power(int nb, int p)
 {
     int result;
-    int i;
 
-    i = 0;
-    result = 0;
-    while (i < pow)
+    result = 1;
+    while (p != 0)
     {
         result *= nb;
-        i++;
+        p--;
     }
     return (result);
 }
@@ -43,7 +41,7 @@ int convert_dec(char *str)
     while (bit != 0)
     {
         res = bit % 10;
-        bit /= 2;
+        bit /= 10;
         dec += res * power(2, i);
         i++;
     }
@@ -56,15 +54,19 @@ void    handle_str(int sign)
     int i;
     int final_str;
 
+    ft_putstr_fd("adeus", 1);
     i = 0;
     if (sign == 10)
         str[i++] = '0';
     else if (sign == 12)
         str[i++] = '1';
-    final_str = 0;
-    str[i] = 48;
-    final_str = convert_dec(str);
-    ft_putchar_fd(final_str, 1);
+    ft_putstr_fd(str, 1);
+    if (i == 8)
+    {
+        str[i] = 48;
+        final_str = convert_dec(str);
+        ft_putchar_fd(final_str, 1);
+    }
 }
 
 int main(void)

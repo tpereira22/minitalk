@@ -19,7 +19,7 @@ void    send_signal(int pid, int *binary)
     int i;
 
     i = 0;
-    while (i >= 7)
+    while (i <= 7)
     {
         if (binary[i] == 0)
             kill(pid, SIGUSR1);

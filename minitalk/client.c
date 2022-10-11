@@ -22,9 +22,15 @@ void    send_signal(int pid, int *binary)
     while (i <= 7)
     {
         if (binary[i] == 0)
+        {
             kill(pid, SIGUSR1);
+            usleep(100);
+        }
         else if (binary[i] == 1)
+        {
             kill(pid, SIGUSR2);
+            usleep(100);
+        }
         i++;
     }
     free(binary);
@@ -45,12 +51,6 @@ int *convert_bit(int c)
     }
     while (i >= 0)
         binary[i--] = 0;
-/*    i = 0;
-    while (i <= 7)
-    {
-        ft_putnbr_fd(binary[i++], 1);
-    }
-    ft_putchar_fd('\n', 1);*/
     return (binary);
 }
 
@@ -65,9 +65,6 @@ int main(int argc, char **argv)
         ft_putstr_fd("./client [SERVER PID] [STRING]\n", 1);
         return (0);
     }
-    ft_putstr_fd("Sent -> ", 1);
-    ft_putstr_fd(argv[2], 1);
-    ft_putchar_fd('\n', 1);
     pid = ft_atoi(argv[1]);
     i = 0;
     while (argv[2][i] != '\0')
@@ -75,5 +72,5 @@ int main(int argc, char **argv)
         send_signal(pid, convert_bit(argv[2][i]));
         i++;
     }
-    return (0);
+    send_signal(pid, convert_bit(10));
 }

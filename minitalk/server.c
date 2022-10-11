@@ -14,6 +14,8 @@
 #include <signal.h>
 #include "libft/libft.h"
 
+int glob_i = 0;
+
 int power(int nb, int p)
 {
     int result;
@@ -51,21 +53,18 @@ int convert_dec(char *str)
 void    handle_str(int sign)
 {
     char    str[9];
-    int i;
     int final_str;
 
-    ft_putstr_fd("adeus", 1);
-    i = 0;
     if (sign == 10)
-        str[i++] = '0';
+        str[glob_i++] = '0';
     else if (sign == 12)
-        str[i++] = '1';
-    ft_putstr_fd(str, 1);
-    if (i == 8)
+        str[glob_i++] = '1';
+    if (glob_i == 8)
     {
-        str[i] = 48;
+        str[glob_i] = 0;
         final_str = convert_dec(str);
         ft_putchar_fd(final_str, 1);
+        glob_i = 0;
     }
 }
 
@@ -73,8 +72,8 @@ int main(void)
 {
     ft_putstr_fd("Server PID -> ", 1);
     ft_putnbr_fd(getpid(), 1);
-    ft_putstr_fd("\n", 1);
+    ft_putchar_fd(10, 1);
     signal(SIGUSR1, handle_str);
     signal(SIGUSR2, handle_str);
-    return (0);
+    while (1);
 }
